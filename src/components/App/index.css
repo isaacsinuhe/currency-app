@@ -1,0 +1,24 @@
+.component {
+  text-align: center;
+}
+
+.component-logo {
+  animation: component-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.component-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.component-intro {
+  font-size: large;
+}
+
+@keyframes component-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

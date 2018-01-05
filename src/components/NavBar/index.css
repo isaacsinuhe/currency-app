@@ -1,3 +1,19 @@
-.component {
-    background-color: red;
+.NavBar {
+    border-bottom: 2px gray solid;
+    border-top: 2px lightgray solid;
+    border-radius: 20px;
+    padding: 5px;
+    margin: 5px 15px;
+}
+
+.NavBar ul {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.NavBar img {
+    height: 30px;
+    width: 30px;
+    border: green 10px solid;
 }

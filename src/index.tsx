@@ -1,14 +1,16 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import App from './components/App';
-import { BrowserRouter, Route } from 'react-router-dom';
-import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import registerServiceWorker from './registerServiceWorker'
+import { routes } from './routes'
+import { reducers } from './modules'
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+import './index.css'
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Route path="/" component={App} />
-  </BrowserRouter>
+  <Provider store={createStore(reducers)}>
+    {routes}
+  </Provider>
   ,
   document.getElementById('root') as HTMLElement
 );

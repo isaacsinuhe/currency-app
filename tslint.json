@@ -29,19 +29,9 @@
             "static-before-instance",
             "variables-before-functions"
         ],
-        "no-any": true,
+        "no-any": false,
         "no-arg": true,
         "no-bitwise": true,
-        "no-console": [
-            true,
-            "log",
-            "error",
-            "debug",
-            "info",
-            "time",
-            "timeEnd",
-            "trace"
-        ],
         "no-consecutive-blank-lines": true,
         "no-construct": true,
         "no-debugger": true,
@@ -63,7 +53,7 @@
         ],
         "quotemark": [true, "single", "jsx-double"],
         "radix": true,
-        "semicolon": [true, "always"],
+        "semicolon": [false, "always"],
         "switch-default": true,
 
         "trailing-comma": [false],

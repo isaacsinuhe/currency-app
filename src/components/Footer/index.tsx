@@ -1,15 +1,11 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import './index.css';
 
-export default class NavBar extends React.Component {
+export default class Footer extends React.Component {
     render() {
         return (
-            <div className="component">
-                <ul>
-                    <Link to="/transactions">Transactions</Link>
-                    <Link to="/currency-converter" >Currency Converter</Link>
-                </ul>
+            <div className="Footer">
+                this is the footer
             </div>
         );
     }

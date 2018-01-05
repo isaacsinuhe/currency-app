@@ -1,0 +1,9 @@
+.Footer {
+    min-height: 50px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    border: 2px solid gray;
+    box-sizing: border-box;
+    margin: 15px;
+}

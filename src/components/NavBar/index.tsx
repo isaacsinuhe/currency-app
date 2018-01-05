@@ -5,7 +5,7 @@ import './index.css';
 export default class NavBar extends React.Component {
     render() {
         return (
-            <div className="component">
+            <div className="NavBar">
                 <ul>
                     <img src="logo.png" alt="transactions-logo"/>
                     <Link to="/transactions">Transactions</Link>

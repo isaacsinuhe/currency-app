@@ -1,0 +1,14 @@
+.TransactionInput {
+    /* border: 3px dashed lightblue; */
+    min-height: 50px;
+    width: 30%;
+    padding: 2em;
+}
+
+.TransactionInput form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-self: flex-start;
+    align-self: stretch;
+}
+

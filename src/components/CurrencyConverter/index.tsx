@@ -1,16 +1,19 @@
 import * as React from 'react';
 import './index.css';
+import { SelectField, MenuItem, TextField } from 'material-ui'
 
 export default class CurrencyConverter extends 
     React.Component <CurrencyConverter.props, CurrencyConverter.state> {
-
-    state: CurrencyConverter.state = {
-        currencyFrom: undefined,
-        currencyTo: undefined,
-        quantity: 0,
-        result: 0
+    style = {
+        inputWidth: { width: '120px' },
+        selectWidth: { width: '120px' }
     }
-
+    state: CurrencyConverter.state = {
+        currencyFrom: { currencyCode: 'USD', currentRateValue: 1, currencySymbol: '$' },
+        currencyTo: { currencyCode: 'USD', currentRateValue: 1, currencySymbol: '$' },
+        quantity: 1.00,
+        result: 1.00
+    }
     currenciesMock: CurrencyConverter.currencyMock = [
         { currencyCode: 'USD', currentRateValue: 1, currencySymbol: '$' },
         { currencyCode: 'EUR', currentRateValue: 0.5, currencySymbol: '$' },
@@ -39,97 +42,110 @@ export default class CurrencyConverter extends
             result: this.convertCurrency({quantity: + value})
         }))
     }
-    fromChangeHandler = ({target: {value}}: React.ChangeEvent<HTMLSelectElement>) => {
+    fromChangeHandler = (event: any, index: number, value: string) => {
         const currencyFrom = this.currenciesMock.find((currency) =>
             currency.currencyCode === value
         )
-        this.setState((prevState, props) => ({
-            currencyFrom,
-            result: this.convertCurrency({currencyFrom})
-        }))
+        if (currencyFrom) {
+            this.setState((prevState, props) => ({
+                currencyFrom,
+                result: this.convertCurrency({currencyFrom})
+            }))
+        }
     }
-    toChangeHandler = ({target: {value}}: React.ChangeEvent<HTMLSelectElement>) => {
+    toChangeHandler = (event: any, index: number, value: string) => {
         const currencyTo = this.currenciesMock.find((currency) =>
             currency.currencyCode === value
         )
-        this.setState((prevState, props) => ({
-            currencyTo,
-            result: this.convertCurrency({currencyTo})
-        }))
+        
+        if (currencyTo) {
+            this.setState((prevState, props) => ({
+                currencyTo,
+                result: this.convertCurrency({currencyTo})
+            }))
+        }
     }
     componentWillMount () {
         const [initialCurrency] = this.currenciesMock
         this.setState((prevState, props) => ({
             currencyFrom: initialCurrency,
             currencyTo: initialCurrency,
-            quantity: 1,
+            quantity: 1.00,
             result: 
                 initialCurrency.currentRateValue / initialCurrency.currentRateValue
         }))
     }
-
     render() {
         return (
             <div className="CurrencyConverter">
-
-                <div className="inputs">
-                    <div className="from">
-                        <div className="tag">From: </div>
-                        <select 
-                            name="from"
-                            onChange={this.fromChangeHandler}
-                        >
-                                {
-                                this.currenciesMock
-                                    // .filter(currency => currency !== this.state.currencyTo)
-                                    .map((currency, index) => {
-                                        return currency ? (
-                                            <option
-                                                key={index}
-                                                value={currency.currencyCode}
-                                            >
-                                                {currency.currencyCode}
-                                            </option>
-                                        ) :
-                                            ''
-                                    })
-                                }
-                        </select>
-                        <input
-                            value={this.state.quantity}
-                            onChange={this.quantityChangeHandler}
-                            type="number"
-                        />
-                    </div>
-                    <div className="to">
-                        <div className="tag" >To: </div>
-                        <select 
-                            name="to" 
-                            onChange={this.toChangeHandler}
-                        >
-                                {
-                                this.currenciesMock
-                                    // .filter(currency => currency !== this.state.currencyFrom)
-                                    .map((currency, index) => {
-                                        return currency ? (
-                                            <option
-                                                key={index}
-                                                value={currency.currencyCode}
-                                            >
-                                                {currency.currencyCode}
-                                            </option>
-                                        ) :
-                                            ''
-                                    })
-                                }
-                        </select>
-                        <input
-                            readOnly={true} 
-                            className="result"
-                            value={this.state.result}
-                        />
-                    </div>
+                <h2> Currency converter</h2>
+            <div className="currencyInputs">
+                <div className="container">
+                    {/* <div className="tag">From: </div> */}
+                    <SelectField
+                        name="from"
+                        floatingLabelText="Currency From"
+                        value={this.state.currencyFrom.currencyCode}
+                        onChange={this.fromChangeHandler}
+                        style={this.style.selectWidth}
+                    >
+                            {
+                            this.currenciesMock
+                                // .filter(currency => currency !== this.state.currencyTo)
+                                .map((currency, index) => {                                    
+                                    return currency ? (
+                                        <MenuItem
+                                            value={currency.currencyCode}
+                                            primaryText={currency.currencyCode}
+                                            key={index}
+                                        />
+                                    ) :
+                                        ''
+                                })
+                            }
+                    </SelectField>
+                    <TextField
+                        style={this.style.inputWidth}
+                        name="quantity"
+                        value={this.state.quantity}
+                        step={0.01}
+                        onChange={this.quantityChangeHandler}
+                        type="number"
+                    />
                 </div>
+                <div className="container">
+                    {/* <div className="tag" >To: </div> */}
+                    <SelectField 
+                        name="to"
+                        floatingLabelText="Currency To"
+                        style={this.style.selectWidth}
+                        value={this.state.currencyTo.currencyCode}
+                        onChange={this.toChangeHandler}
+                    >
+                            {
+                            this.currenciesMock
+                                // .filter(currency => currency !== this.state.currencyFrom)
+                                .map((currency, index) => {
+                                    return currency ? (
+                                        <MenuItem
+                                            value={currency.currencyCode}
+                                            primaryText={currency.currencyCode}
+                                            key={index}
+                                        />
+                                    ) :
+                                        ''
+                                })
+                            }
+                    </SelectField>
+                    <TextField
+                        style={this.style.inputWidth}
+                        disabled={true}
+                        name="result"
+                        value={this.state.result}
+                    />
+                </div>
+
+            </div>
             </div>
         );
     }

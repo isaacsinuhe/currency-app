@@ -1,17 +1,30 @@
-.CurrencyConverter .inputs {
+.CurrencyConverter {
     margin: 10px 20px;
     padding: 20px 0;
-    min-height: 50px;
-    display: flex;
+    min-height: 300px;
     border: 2px solid lightgray;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.CurrencyConverter h2 {
+    align-self: center;
+}
+
+.currencyInputs {
+    display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
+    align-items: center;
 }
-.CurrencyConverter .inputs .from, .CurrencyConverter .inputs .to {
+.currencyInputs .container {
     display: flex;
+    align-items: flex-end
 }
-.CurrencyConverter .inputs .from .tag, .CurrencyConverter .inputs .to .tag {
+.currencyInputs .container .tag {
     display: flex;
     align-items: center;
     font-size: 1.2em;
+    padding-right: 1.5em;
 }

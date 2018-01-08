@@ -1,8 +1,49 @@
-declare interface AppProps {}
-declare interface AppState {}
+declare namespace App {
+    interface props {}
+    interface state {}
+}
+
+declare namespace NavBar {
+    interface props {}
+    interface state { open: boolean }
+}
 
 declare namespace Transactions {
-    type initialState = {}
+    export interface props {}
+    interface state <DATE> {
+        transactionsList: Array<transaction<DATE>>
+    }
+    export interface transaction <DATE> {
+        date: DATE
+        concept: string
+        ammount: number 
+        type: 'purchase' | 'transfer' | 'refund'
+    }
+    interface addTransaction {
+        (transaction: Transactions.transaction<any>): void
+    }
+}
+
+declare namespace TransactionInput {
+    interface props {
+        title: string
+        add: Transactions.addTransaction
+    }
+    interface state {
+
+    }
+    interface FormValue {
+        name: string,
+        value: string | number
+    }
+}
+
+declare namespace TransactionTable {
+    interface props {
+        footer: string
+        header: string,
+        dataList: Array<Transactions.transaction<string>>
+    }
 }
 
 declare namespace CurrencyConverter {
@@ -19,6 +60,6 @@ declare namespace CurrencyConverter {
         currencySymbol: string
     }
     type currencyMock = Array<currency>
-    type currencyFrom = currency | undefined
-    type currencyTo = currency | undefined
+    type currencyFrom = currency
+    type currencyTo = currency
 }

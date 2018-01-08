@@ -1,0 +1,8 @@
+.Transactions {
+    margin: 10px 20px;
+    padding: 20px;
+    min-height: 50px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}

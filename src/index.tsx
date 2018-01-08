@@ -9,7 +9,7 @@ import './index.css'
 
 ReactDOM.render(
   <Provider store={createStore(reducers)}>
-    {routes}
+      {routes}
   </Provider>
   ,
   document.getElementById('root') as HTMLElement

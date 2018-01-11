@@ -6,7 +6,7 @@ import FontIcon from 'material-ui/FontIcon';
 
 export default class NavBar extends React.Component<NavBar.props, NavBar.state> {
     style = {
-        appBarStyle: { backgroundColor: 'rgb(255, 64, 129)' }
+        appBarStyle: { backgroundColor: 'rgb(0, 151, 167)' }
     }
     state: NavBar.state = {
         open: false
@@ -20,7 +20,7 @@ export default class NavBar extends React.Component<NavBar.props, NavBar.state> 
             <div style={{height: '100%'}} className="NavBar">
                 <AppBar
                     title="My Fabulous Currency App"
-                    style={this.style.appBarStyle}
+                    // style={this.style.appBarStyle}
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
                     onLeftIconButtonClick={this.handleToggle}
                 />
@@ -33,7 +33,7 @@ export default class NavBar extends React.Component<NavBar.props, NavBar.state> 
                 <Paper>
                     <AppBar
                         title="Options"
-                        style={this.style.appBarStyle}
+                        // style={this.style.appBarStyle}
                         onLeftIconButtonClick={this.handleToggle}
                     />
                         <Link onClick={this.handleClose} to="/">

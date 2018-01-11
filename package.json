@@ -2,9 +2,26 @@
   "name": "currency",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
+  "scripts": {
+    "prod": "concurrently \"mongod\" \"react-scripts-ts build && tsc -p server && node ./build/server/index.js\"",
+    "dev": "concurrently \"mongod\" \"react-scripts-ts start\" \"tsc -w -p server\" \"nodemon ./build/server/index.js\"",
+    "start/client": "react-scripts-ts start",
+    "start/server": "concurrently  \"mongod\" \"tsc -w -p server\" \"nodemon ./build/server/index.js\"",
+    "build/client": "react-scripts-ts build",
+    "build/server": "tsc -p server",
+    "build": "react-scripts-ts build && tsc -p server",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  },
   "dependencies": {
+    "axios": "^0.17.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
     "material-ui": "^0.20.0",
     "moment": "^2.20.1",
+    "mongoose": "^4.13.9",
+    "morgan": "^1.9.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
@@ -14,16 +31,15 @@
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1"
   },
-  "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
-  },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/dotenv": "^4.0.2",
+    "@types/express": "^4.11.0",
     "@types/jest": "^22.0.0",
     "@types/material-ui": "^0.20.1",
     "@types/moment": "^2.13.0",
+    "@types/mongoose": "^4.7.32",
+    "@types/morgan": "^1.7.35",
     "@types/node": "^8.5.2",
     "@types/react": "^16.0.33",
     "@types/react-dom": "^16.0.3",
@@ -31,6 +47,7 @@
     "@types/react-router": "^4.0.20",
     "@types/react-router-dom": "^4.2.3",
     "@types/redux": "^3.6.0",
-    "@types/redux-actions": "^2.2.3"
+    "@types/redux-actions": "^2.2.3",
+    "concurrently": "^3.5.1"
   }
 }

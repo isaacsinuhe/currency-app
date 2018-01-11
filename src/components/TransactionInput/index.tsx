@@ -4,30 +4,34 @@ import * as moment from 'moment'
 import { TextField, DatePicker, Paper, SelectField, MenuItem, RaisedButton } from 'material-ui';
 
 export default class TransactionInput extends React.Component<TransactionInput.props, TransactionInput.state> {
-    state: Transactions.transaction<any> = {
-        date: moment(),
+    state: Transactions.Transaction<any> = {
+        date: moment().toDate(),
         type: 'purchase',
         concept: 'Stablishment',
         ammount: 0
     }
 
-    handleInputChange = ({target}: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    handleInputChange = ({target}: React.ChangeEvent<HTMLInputElement>) => {
         const value = target.value;
         const name = target.name;
-        
-        this.setState({
+        console.log(target)
+        this.setState((prevState) => ({
             [name]: value
-        });
+        }))
     }
 
+    handleSelectChange = (event: React.SyntheticEvent<HTMLSelectElement>, index: number, value: any) => {
+        this.setState((prevState) => ({
+            type: value
+        }))
+    }
     handleDateChange = (event: Event, date: Date) => {
-        this.setState({
+        this.setState((prevState) => ({
             date: date,
-        });
-    };
+        }));
+    }
 
     onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
         this.props.add({...this.state})
     }
 
@@ -53,7 +57,7 @@ export default class TransactionInput extends React.Component<TransactionInput.p
                         name="from"
                         floatingLabelText="Type of transaction"
                         value={this.state.type}
-                        onChange={this.handleInputChange}
+                        onChange={this.handleSelectChange}
                         fullWidth={true}
                     >
                         <MenuItem
@@ -92,7 +96,7 @@ export default class TransactionInput extends React.Component<TransactionInput.p
                     />
                     <RaisedButton 
                         type="submit" 
-                        secondary={true} 
+                        primary={true} 
                         label="Add" 
                         fullWidth={true}
                     />

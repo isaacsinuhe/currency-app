@@ -3,7 +3,10 @@ import './index.css';
 import { Table, TableHeader, TableRow, TableBody, TableRowColumn, TableHeaderColumn, Paper } from 'material-ui';
 
 export default function TransactionTable (props: TransactionTable.props) {
-    const dataPropNames = Object.keys(props.dataList[0])
+    const dataPropNames = props.dataList.length ? 
+        Object.keys(props.dataList[0]) :
+        ['No Data could be fetched']
+        
     const style = {
         height: '300px'
     }
@@ -15,7 +18,6 @@ export default function TransactionTable (props: TransactionTable.props) {
                 fixedHeader={true}
                 selectable={false}
                 multiSelectable={false}
-                className="TransactionTable"
             >
                 <TableHeader
                     displaySelectAll={false}

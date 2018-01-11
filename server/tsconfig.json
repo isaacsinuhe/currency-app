@@ -1,0 +1,22 @@
+{
+    "extends": "../tsconfig",
+    "compilerOptions": {
+        "module": "commonjs",
+        "outDir": "../build/server",
+        "baseUrl": "",
+        "rootDir": "./",
+        "lib": [
+            "es6",
+            "dom",
+            "esnext"
+        ],
+        "typeRoots": [
+            "../node_modules/@types",
+            "../typings/server",
+            "./typings/server"
+        ]
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

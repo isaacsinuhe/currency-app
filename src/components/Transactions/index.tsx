@@ -17,8 +17,8 @@ export class Transactions extends React.Component <Transactions.props<Moment>> {
 
     addTransaction: Transactions.addTransaction = async (transaction) => {
         transaction = { ...transaction, date: moment(transaction.date)}
-        await axios.post('/transactions', transaction)
-        this.props.addTransaction(transaction)
+        const { data } = await axios.post('/transactions', transaction)
+        if (data) { this.props.addTransaction(transaction) }
     }
     render() {
         return (

@@ -6,7 +6,7 @@ const Home = () => {
     const style: {[prop: string]: React.CSSProperties} = {
         root: { 
             height: '400px',
-            backgroundImage: `url(home-bg.gif)`
+            // backgroundImage: `url(home-bg.gif)`
         }
     }
     return (
